@@ -1,16 +1,6 @@
 import { Keypair, Connection, clusterApiUrl, LAMPORTS_PER_SOL, PublicKey, Transaction, SystemProgram, sendAndConfirmTransaction } from '@solana/web3.js';
 import fs from 'fs';
 
-/* wallet.ts/.js dosyasında aşağıdaki komutlar belirtilen işlemleri yapmalıdır.
-- new komutu ile Solana üzerinde bir cüzdan oluşturup, cüzdan bilgileri aynı dosyadaki wallet.json dosyasına kaydedilmelidir.
--- Aynı zamanda oluşturulan cüzdanın json dosyasında bakiyesi de kaydedilmelidir.
-
-- airdrop [X] komutu ile X kadar ya da varsayılan olarak 1 SOL airdrop yapılacak.
-
-- balance komutu ile önceki adımda oluşturulan cüzdan için bakiye kontrolü yapılmalıdır.
-
-- transer [otherPublicKey][Amount] komutu  otherPublicKey parametresine girilen cüzdan adresine Amount parametresine girilen değer kadar transfer yapması gerekli ve işlem sonucu ekrana yazılmalıdır.
--- Bu transfer önceki adımlarda oluşturduğun cüzdan adresinden yapılmalıdır. */
 
 class SolanaWallet {
     keypair: Keypair;
@@ -32,7 +22,7 @@ class SolanaWallet {
         console.log('Wallet created:', walletData.publicKey);
     }
 
-    /* - airdrop [X] komutu ile X kadar ya da varsayılan olarak 1 SOL airdrop yapılacak. */
+    /* - 1 SOL airdrop */
     async airdrop(connection: Connection, amount: number = 1) {
         const airdropSignature = await connection.requestAirdrop(
             this.keypair.publicKey,
